@@ -1,0 +1,12 @@
+{
+  "environment": "development",
+  "version": "0.0.1",
+  "buildDate": "NOW",
+  "buildSHA": "",
+  "name": "eco-os-metrics-service",
+  "serviceId": "006",
+  "server": {
+    "port": "8014"
+  },
+  "logVerbose": true
+}

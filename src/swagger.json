@@ -1,0 +1,54 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "The metrics service collect metrics from other services.",
+    "version": "1.0.0",
+    "title": "2ndLock metrics service",
+    "termsOfService": "http://2ndLock.com",
+    "contact": {
+      "email": "jens@symlink.de"
+    },
+    "license": {
+      "name": "Apache 2.0",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+    }
+  },
+  "basePath": "/api/v1/",
+  "tags": [
+    {
+      "name": "metrics",
+      "description": "Return memory usage from each service in infrastructure"
+    }
+  ],
+  "schemes": [
+    "http"
+  ],
+  "paths": {
+    "/metrics/memory": {
+      "get": {
+        "tags": [
+          "metrics"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/heartbeat": {
+      "get": {
+        "tags": [
+          "heartbeat"
+        ],
+        "summary": "get current heartbeat from service",
+        "description": "response with current service health",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    }
+  }
+}
