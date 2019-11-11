@@ -17,16 +17,22 @@
 
 
 
-import { IMetricsCollector } from "../metrics/IMetricsCollector";
-import { metricsCotainer } from "../metrics/MetricContainer";
-import { METRICSTYPES } from "../metrics/MetricsTypes";
+import { IStatsManager } from "./IStatsManager";
+import { injectable } from "inversify";
+import { injectRedisClient } from "@symlinkde/eco-os-pk-redis";
+import { PkRedis } from "@symlinkde/eco-os-pk-models";
+import { IStats } from "../../models";
 
-// tslint:disable-next-line:typedef
-function injectMetricsCollector<T extends new (...args: any[]) => {}>(constructor: T) {
-  return class extends constructor {
-    // tslint:disable-next-line:member-access
-    metricCollector: IMetricsCollector = metricsCotainer.get<IMetricsCollector>(METRICSTYPES.IMetricsCollector);
-  };
+@injectRedisClient
+@injectable()
+export class StatsManager implements IStatsManager {
+  private redisClient!: PkRedis.IRedisClient;
+
+  public async add(stats: IStats): Promise<void> {
+    this.redisClient.set(`stats.${new Date().getTime()}`, stats, 3600);
+  }
+
+  public async get(): Promise<Array<IStats>> {
+    return await this.redisClient.getAll("stats.*");
+  }
 }
-
-export { injectMetricsCollector };

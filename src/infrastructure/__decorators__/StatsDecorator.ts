@@ -17,11 +17,16 @@
 
 
 
-import {Container} from "inversify";
-import { IMetricsCollector } from "./IMetricsCollector";
-import { METRICSTYPES } from "./MetricsTypes";
-import { MetricCollector } from "./MetricCollector";
+import { IStatsManager } from "../stats/IStatsManager";
+import { statsContainer } from "../stats/StatsContainer";
+import { STATSTYPES } from "../stats/StatsTypes";
 
-const metricsCotainer = new Container();
-metricsCotainer.bind<IMetricsCollector>(METRICSTYPES.IMetricsCollector).to(MetricCollector).inSingletonScope();
-export {metricsCotainer};
+// tslint:disable-next-line:typedef
+function injectStatsManager<T extends new (...args: any[]) => {}>(constructor: T) {
+  return class extends constructor {
+    // tslint:disable-next-line:member-access
+    statsManager: IStatsManager = statsContainer.get<IStatsManager>(STATSTYPES.IStatsManager);
+  };
+}
+
+export { injectStatsManager };

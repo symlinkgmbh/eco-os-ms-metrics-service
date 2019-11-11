@@ -18,3 +18,4 @@
 
 
 export * from "./MetricsController";
+export * from "./StatsController";

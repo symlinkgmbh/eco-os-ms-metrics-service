@@ -17,5 +17,22 @@
 
 
 
-export { injectMetricsCollector } from "./MetricCollectorDecorator";
-export { injectStatsManager } from "./StatsDecorator";
+import { injectStatsManager } from "../../infrastructure/__decorators__";
+import { IStatsManager } from "../../infrastructure/stats/IStatsManager";
+import { Request } from "express";
+import { IStats } from "../../models";
+
+@injectStatsManager
+export class StatsController {
+  private statsManager!: IStatsManager;
+
+  public async add(req: Request): Promise<void> {
+    const { timestamp, method, target }: IStats = req.body;
+    this.statsManager.add({ timestamp, method, target });
+    return;
+  }
+
+  public async get(): Promise<Array<IStats>> {
+    return await this.statsManager.get();
+  }
+}

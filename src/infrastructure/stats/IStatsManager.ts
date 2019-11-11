@@ -17,8 +17,9 @@
 
 
 
-import { IServiceMemory } from "../models";
+import { IStats } from "../../models";
 
-export interface IMetricsCollector {
-    collectMemoryMetric(): Promise<Array<IServiceMemory>>;
+export interface IStatsManager {
+  add(stat: IStats): Promise<void>;
+  get(): Promise<Array<IStats>>;
 }

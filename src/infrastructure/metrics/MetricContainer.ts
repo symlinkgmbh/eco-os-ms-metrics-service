@@ -17,5 +17,14 @@
 
 
 
-export { injectMetricsCollector } from "./MetricCollectorDecorator";
-export { injectStatsManager } from "./StatsDecorator";
+import { Container } from "inversify";
+import { IMetricsCollector } from "./IMetricsCollector";
+import { METRICSTYPES } from "./MetricsTypes";
+import { MetricCollector } from "./MetricCollector";
+
+const metricsCotainer = new Container();
+metricsCotainer
+  .bind<IMetricsCollector>(METRICSTYPES.IMetricsCollector)
+  .to(MetricCollector)
+  .inSingletonScope();
+export { metricsCotainer };

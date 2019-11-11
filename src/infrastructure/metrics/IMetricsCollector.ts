@@ -17,5 +17,8 @@
 
 
 
-export { injectMetricsCollector } from "./MetricCollectorDecorator";
-export { injectStatsManager } from "./StatsDecorator";
+import { IServiceMemory } from "../../models";
+
+export interface IMetricsCollector {
+  collectMemoryMetric(): Promise<Array<IServiceMemory>>;
+}

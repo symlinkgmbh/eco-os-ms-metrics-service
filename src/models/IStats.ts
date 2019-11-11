@@ -17,5 +17,8 @@
 
 
 
-export { injectMetricsCollector } from "./MetricCollectorDecorator";
-export { injectStatsManager } from "./StatsDecorator";
+export interface IStats {
+  timestamp: number;
+  method: string;
+  target: string;
+}

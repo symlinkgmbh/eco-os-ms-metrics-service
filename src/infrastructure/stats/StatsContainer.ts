@@ -17,8 +17,14 @@
 
 
 
-const METRICSTYPES = {
-    IMetricsCollector: Symbol.for("IMetricsCollector"),
-};
+import { Container } from "inversify";
+import { IStatsManager } from "./IStatsManager";
+import { STATSTYPES } from "./StatsTypes";
+import { StatsManager } from "./StatsManager";
 
-export {METRICSTYPES};
+const statsContainer = new Container();
+statsContainer
+  .bind<IStatsManager>(STATSTYPES.IStatsManager)
+  .to(StatsManager)
+  .inSingletonScope();
+export { statsContainer };

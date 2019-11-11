@@ -17,5 +17,6 @@
 
 
 
-export {IService} from "./IService";
-export {IServiceMemory} from "./IServiceMemory";
+export { IService } from "./IService";
+export { IServiceMemory } from "./IServiceMemory";
+export { IStats } from "./IStats";

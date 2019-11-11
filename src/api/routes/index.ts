@@ -21,3 +21,5 @@ export * from "./Heartbeat";
 export * from "./Metrics";
 export * from "./MetricsInternal";
 export * from "./LicenseBeat";
+export * from "./InternalConfig";
+export * from "./Statistics";

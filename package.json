@@ -45,6 +45,7 @@
     "@symlinkde/eco-os-pk-core": "^0.0.*",
     "@symlinkde/eco-os-pk-log": "^0.0.*",
     "@symlinkde/eco-os-pk-models": "^0.0.*",
+    "@symlinkde/eco-os-pk-redis": "^0.0.18",
     "config": "^3.1.0",
     "express": "^4.17.1",
     "inversify": "^5.0.1",

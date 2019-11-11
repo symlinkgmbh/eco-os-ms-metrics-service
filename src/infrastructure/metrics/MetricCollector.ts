@@ -18,7 +18,7 @@
 
 
 import { IMetricsCollector } from "./IMetricsCollector";
-import { IServiceMemory, IService } from "../models";
+import { IServiceMemory, IService } from "../../models";
 import { injectable } from "inversify";
 import Axios, { AxiosInstance } from "axios";
 import { Log, LogLevel } from "@symlinkde/eco-os-pk-log";
@@ -46,7 +46,7 @@ export class MetricCollector implements IMetricsCollector {
               serviceMemories[indexService].bytes + response.data.metrics.service.serviceMemories.heapTotal;
             serviceMemories[indexService].memoryUsage = this.bytesToSize(serviceMemories[indexService].bytes);
           } else {
-            await serviceMemories.push(<IServiceMemory>{
+            serviceMemories.push(<IServiceMemory>{
               name: services[index].name,
               memoryUsage: this.bytesToSize(response.data.metrics.service.memory.heapTotal),
               bytes: response.data.metrics.service.memory.heapTotal,
@@ -70,7 +70,7 @@ export class MetricCollector implements IMetricsCollector {
 
     for (const index in response.data) {
       if (index) {
-        await services.push(<IService>{
+        services.push(<IService>{
           name: response.data[index].name,
           url: response.data[index].url,
         });

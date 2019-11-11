@@ -18,7 +18,7 @@
 
 
 import { injectMetricsCollector } from "../../infrastructure/__decorators__";
-import { IMetricsCollector } from "../../infrastructure/IMetricsCollector";
+import { IMetricsCollector } from "../../infrastructure/metrics/IMetricsCollector";
 import { IServiceMemory } from "../../models";
 import { CustomRestError } from "@symlinkde/eco-os-pk-api";
 import { Log, LogLevel } from "@symlinkde/eco-os-pk-log";

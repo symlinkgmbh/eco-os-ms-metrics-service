@@ -17,5 +17,8 @@
 
 
 
-export { injectMetricsCollector } from "./MetricCollectorDecorator";
-export { injectStatsManager } from "./StatsDecorator";
+const METRICSTYPES = {
+  IMetricsCollector: Symbol.for("IMetricsCollector"),
+};
+
+export { METRICSTYPES };

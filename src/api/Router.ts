@@ -19,13 +19,15 @@
 
 import { Application } from "express";
 import { PkApi } from "@symlinkde/eco-os-pk-models";
-import { Heartbeat, MetricsRoutes, MetricsInternalRoute, LicenseBeat } from "./routes";
+import { Heartbeat, MetricsRoutes, MetricsInternalRoute, LicenseBeat, ConfigBeat, StatistisRoute } from "./routes";
 
 export class Router implements PkApi.IRouter {
   protected heartbeat: Heartbeat | undefined;
   protected licenseBeat: LicenseBeat | undefined;
   protected metrics: MetricsRoutes | undefined;
   protected metricsInternal: MetricsInternalRoute | undefined;
+  protected configBeat: ConfigBeat | undefined;
+  protected statisticsRoute: StatistisRoute | undefined;
 
   private app: Application;
 
@@ -36,8 +38,10 @@ export class Router implements PkApi.IRouter {
   public initRoutes(): void {
     this.heartbeat = new Heartbeat(this.app);
     this.licenseBeat = new LicenseBeat(this.app);
+    this.configBeat = new ConfigBeat(this.app);
     this.metrics = new MetricsRoutes(this.app);
     this.metricsInternal = new MetricsInternalRoute(this.app);
+    this.statisticsRoute = new StatistisRoute(this.app);
     return;
   }
 }
